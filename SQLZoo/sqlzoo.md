@@ -5,7 +5,8 @@
 ## [1. SELECT basics](https://sqlzoo.net/wiki/SELECT_basics)
 
 1.1. Introducing the `world` table of countries<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Show the population of Germany.
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show the population of Germany.
 ```sql
 SELECT
   population
