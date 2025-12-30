@@ -1,6 +1,7 @@
 ## Sections
 1. [SELECT basics](#1-select-basics)
 2. [SELECT FROM world](#2-select-from-world)
+3. [SELECT FROM nobel](#2-select-from-nobel)
 
 ## [1. SELECT basics](https://sqlzoo.net/wiki/SELECT_basics)
 1.1. **Introducing the `world` table of countries**<br>
@@ -194,4 +195,187 @@ AND
   name LIKE '%o%'
 AND
  name LIKE '%u%'
+```
+## [3. SELECT from nobel](https://sqlzoo.net/wiki/SELECT_name)
+
+3.1. **Winners from 1950**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Display the `year`, `subject`, and `winner` of the Nobel prizes for 1950
+```sql
+SELECT
+  yr as "year", subject, winner
+FROM
+  nobel
+WHERE
+  yr = 1950
+```
+3.2. **1962 Literature**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show who won the 1962 prize for literature. 
+```sql
+SELECT
+  winner
+FROM
+  nobel
+WHERE
+  yr = 1962
+AND
+  subject = 'literature'
+```
+3.3. **Albert Einstein**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show the `year` and `subject` that won 'Albert Einstein' his prize
+```sql
+SELECT
+  yr AS "year", subject
+FROM
+  nobel
+WHERE
+  winner = 'Albert Einstein'
+```
+3.4. **Recent Peace Prizes**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Give the name of the 'peace' winners since the year 2000, including 2000.
+```sql
+SELECT
+  winner
+FROM
+  nobel
+WHERE
+  yr >= 2000
+AND
+  subject = 'peace'
+```
+3.5. **Literature in the 1980's**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show all details (`yr`, `subject`, `winner`) of the literature prize winners for 1980 to 1989 inclusive. 
+```sql
+SELECT
+  *
+FROM
+  nobel
+WHERE
+  yr >= 1980
+AND
+  yr <= 1989
+AND
+  subject = 'literature'
+```
+3.6. **Only Presidents**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show all details of the presidential winners:
+* Theodore Roosevelt
+* Thomas Woodrow Wilson
+* Jimmy Carter
+* Barack Obama
+```sql
+SELECT
+  *
+FROM
+  nobel
+WHERE
+  winner IN (
+      'Theodore Roosevelt',
+      'Thomas Woodrow Wilson',
+      'Jimmy Carter',
+      'Barack Obama'
+  )
+```
+3.7. **John**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show the winners with first name John 
+```sql
+SELECT
+  winner
+FROM
+  nobel
+WHERE
+  winner LIKE 'John %'
+```
+3.8. **Chemistry and Physics from different years**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show the `year`, `subject`, and `name` of physics winners for 1980 together with the chemistry winners for 1984.
+```sql
+SELECT
+  yr AS "year", subject, winner AS "name"
+FROM
+  nobel
+WHERE
+  (subject = 'physics'   AND yr = 1980)
+OR
+  (subject = 'chemistry' AND yr = 1984)
+```
+3.9. **Exclude Chemists and Medics**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show the `year`, `subject`, and `name` of winners for 1980 excluding chemistry and medicine
+```sql
+SELECT
+  yr AS "year", subject, winner AS "name"
+FROM
+  nobel
+WHERE
+  subject NOT IN ('chemistry', 'medicine')
+AND
+  yr = 1980
+```
+3.10. **Early Medicine, Late Literature**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show `year`, `subject`, and `name` of people who won a 'Medicine' prize in an early year (before 1910, not including 1910) together with winners of a 'Literature' prize in a later year (after 2004, including 2004)
+```sql
+SELECT
+  yr AS "year", subject, winner AS "name"
+FROM
+  nobel
+WHERE
+  (yr <  1910 AND subject = 'medicine')
+OR
+  (yr >= 2004 AND subject = 'literature')
+```
+3.10. **Umlaut**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Find all details of the prize won by PETER GRÜNBERG
+```sql
+SELECT
+  *
+FROM
+  nobel
+WHERE
+  winner = N'Peter Grünberg'
+```
+3.11. **Apostrophe**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Find all details of the prize won by EUGENE O'NEILL 
+```sql
+SELECT
+  *
+FROM
+  nobel
+WHERE
+  winner = 'Eugene O''Neill'
+```
+3.12. **Knights of the realm**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+List the winners, `year` and `subject` where the `winner` starts with Sir. Show the the most recent first, then by name order.
+```sql
+SELECT
+  winner, yr AS "year", subject
+FROM
+  nobel
+WHERE
+  winner LIKE 'Sir%'
+ORDER BY yr DESC, winner ASC
+```
+3.13. **Chemistry and Physics last**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show the 1984 winners and `subject` ordered by `subject` and `winner` name; but list chemistry and physics last.
+```sql
+SELECT 
+  winner, 
+  subject
+FROM
+  nobel
+WHERE
+  yr = '1984'
+ORDER BY
+  subject IN ('chemistry','physics'), subject, winner;
 ```
