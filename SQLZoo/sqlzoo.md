@@ -55,3 +55,36 @@ FROM
 WHERE
   population > 200000000
 ```
+2.3. Per capita GDP<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Give the `name` and the `per capita GDP` for those countries with a population of at least 200 million
+```sql
+SELECT
+  name, gdp/population as "per capita GDP"
+FROM
+  world
+WHERE
+  population > 200000000
+```
+2.4. South America in millions<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show the `name` and `population` in millions for the countries of the `continent` 'South America'.
+```sql
+SELECT
+  name, population/1000000 AS "pop (1e6)"
+FROM
+  world
+WHERE
+  continent = 'South America'
+```
+2.5. France, Germany, Italy<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show the name and population for France, Germany, Italy 
+```sql
+SELECT
+  name, population
+FROM
+  world
+WHERE
+  name IN ('France', 'Germany' ,'Italy')
+```
