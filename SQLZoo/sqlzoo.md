@@ -99,7 +99,7 @@ FROM
 WHERE
   name LIKE '%United%'
 ```
-2.6. **Two ways to be big**<br>
+2.7. **Two ways to be big**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;
 A country is big if it has an area of more than 3 million sq km or it has a population of more than 250 million.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -111,4 +111,87 @@ FROM
   world
 WHERE
   area > 3000000 OR population > 250000000
+```
+2.8. **One or the other (but not both)**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Exclusive OR (XOR). Show the countries that are big by area (more than 3 million) or big by population (more than 250 million) but not both.
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show `name`, `population` and `area`.
+```sql
+SELECT
+  name, population, area
+FROM
+  world
+WHERE
+  (area > 3000000) <> (population > 250000000)
+```
+2.9. **Rounding**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show the `name` and `population` in millions and the GDP in billions for the countries of the continent 'South America'. Use the ROUND function to show the values to two decimal places.
+```sql
+SELECT 
+  name,
+  ROUND(population/1000000, 2) AS "pop*1e6",
+  ROUND(gdp/1000000000, 2) AS "gdp*1e9"
+FROM
+  world
+WHERE
+  continent = 'South America'
+```
+2.10. **Trillion dollar economies**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show the `name` and `per-capita GDP` for those countries with a GDP of at least one trillion (1000000000000; that is 12 zeros). Round this value to the nearest 1000.
+```sql
+SELECT
+  name,
+  ROUND(gdp/population, -3) AS "per-capita GDP"
+FROM
+  world
+WHERE
+  gdp > 1000000000000
+```
+2.11. **Name and capital have the same length**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show the `name` and `capital` where the name and the capital have the same number of characters.
+```sql
+SELECT
+  name, capital
+FROM
+  world
+WHERE 
+  LENGTH(name) = LENGTH(capital)
+```
+2.12. **Matching name and capital**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show the `name` and the `capital` where the first letters of each match. Don't include countries where the name and the capital are the same word.
+```sql
+SELECT
+  name, capital
+FROM
+  world
+WHERE
+  LEFT(capital, 1) = LEFT(name, 1)
+AND
+  capital <> name
+```
+2.13. **All the vowels**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Find the country that has all the vowels and no spaces in its name.
+```sql
+SELECT
+  name
+FROM
+  world
+WHERE
+  name NOT LIKE '% %'
+AND
+  name LIKE '%a%'
+AND
+  name LIKE '%e%'
+AND
+  name LIKE '%i%'
+AND
+  name LIKE '%o%'
+AND
+ name LIKE '%u%'
 ```
