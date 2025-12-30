@@ -79,7 +79,7 @@ WHERE
 ```
 2.5. France, Germany, Italy<br>
 &nbsp;&nbsp;&nbsp;&nbsp;
-Show the name and population for France, Germany, Italy 
+Show the `name` and `population` for France, Germany, Italy 
 ```sql
 SELECT
   name, population
@@ -87,4 +87,27 @@ FROM
   world
 WHERE
   name IN ('France', 'Germany' ,'Italy')
+```
+2.6. United<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Show the countries which have a `name` that includes the word 'United' 
+```sql
+SELECT
+  name
+FROM
+  world
+WHERE
+  name LIKE '%United%'
+```
+2.6. Two ways to be big<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+A country is big if it has an area of more than 3 million sq km or it has a population of more than 250 million.<br>
+Show the countries that are big by area or big by population. Show `name`, `population` and `area`.
+```sql
+SELECT
+  name, population, area
+FROM
+  world
+WHERE
+  area > 3000000 OR population > 250000000
 ```
