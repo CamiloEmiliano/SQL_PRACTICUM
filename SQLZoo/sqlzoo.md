@@ -4,7 +4,7 @@
 
 ## [1. SELECT basics](https://sqlzoo.net/wiki/SELECT_basics)
 
-1.1. Introducing the `world` table of countries
+1.1. Introducing the `world` table of countries<br>
 Show the population of Germany.
 ```sql
 SELECT
@@ -15,7 +15,7 @@ WHERE
   name = 'Germany'
 ```
 
-1.2. Scandinavia
+1.2. Scandinavia<br>
 Show the name and the population for 'Sweden', 'Norway', and 'Denmark'.
 ```sql
 SELECT
@@ -26,7 +26,7 @@ WHERE
   name IN ('Sweden', 'Norway', 'Denmark')
 ```
 
-1.3. Just the right size
+1.3. Just the right size<br>
 Show the country and area for countries with an area between 200,000 and 250,000.
 ```sql
 SELECT
@@ -37,7 +37,7 @@ FROM world
 
 ## [2. SELECT from world](https://sqlzoo.net/wiki/SELECT_name)
 
-2.1. Introduction
+2.1. Introduction<br>
 Show the name, continent and population of all countries
 ```sql
 SELECT
@@ -46,7 +46,7 @@ FROM
   world
 ```
 
-2.2. Large Countries 
+2.2. Large Countries<br>
 Show the name for the countries that have a population of at least 200 million
 ```sql
 SELECT
