@@ -196,7 +196,7 @@ AND
 AND
  name LIKE '%u%'
 ```
-## [3. SELECT from nobel](https://sqlzoo.net/wiki/SELECT_from_Nobel_Tutorial)
+## [3. SELECT from Nobel Tutorial](https://sqlzoo.net/wiki/SELECT_from_Nobel_Tutorial)
 
 3.1. **Winners from 1950**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;
