@@ -1,8 +1,7 @@
-## Sections
+<!--## Sections
 1. [SELECT basics](#1-select-basics)
 2. [SELECT FROM world](#2-select-from-world)
-3. [SELECT FROM Nobel Tutorial](#2-select-from-nobel-tutorial)
-
+3. [SELECT FROM Nobel Tutorial](#2-select-from-nobel-tutorial)-->
 ## [1. SELECT basics](https://sqlzoo.net/wiki/SELECT_basics)
 1.1. **Introducing the `world` table of countries**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;
