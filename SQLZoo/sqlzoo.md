@@ -1,7 +1,7 @@
 <!--## Sections
 1. [SELECT basics](#1-select-basics)
 2. [SELECT FROM world](#2-select-from-world)
-3. [SELECT FROM Nobel Tutorial](#2-select-from-nobel-tutorial)-->
+3. [SELECT FROM Nobel Tutorial](#3-select-from-nobel-tutorial)-->
 ## [1. SELECT basics](https://sqlzoo.net/wiki/SELECT_basics)
 1.1. **Introducing the `world` table of countries**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -581,4 +581,93 @@ WHERE
     AND
       x.name <> y.name
 )
+```
+## [5. SUM and COUNT](https://sqlzoo.net/wiki/SUM_and_COUNT)
+5.1. **Total world population**<br>
+Show the total population of the world. 
+&nbsp;&nbsp;&nbsp;&nbsp;
+```sql
+SELECT
+  SUM(population) AS "total population of the world"
+FROM
+  world
+```
+5.2. **List of continents**<br>
+List all the continents - just once each. 
+&nbsp;&nbsp;&nbsp;&nbsp;
+```sql
+SELECT
+  DISTINCT(continent)
+FROM
+  world
+```
+5.3. **GDP of Africa**<br>
+Give the total GDP of Africa 
+&nbsp;&nbsp;&nbsp;&nbsp;
+```sql
+SELECT
+  SUM(gdp) AS "GDP of Africa"
+FROM
+  world
+WHERE
+  continent = 'Africa'
+```
+5.4. **Count the big countries**<br>
+How many countries have an area of at least 1000000 
+&nbsp;&nbsp;&nbsp;&nbsp;
+```sql
+SELECT
+  COUNT(name)
+FROM
+  world
+WHERE
+  area > 1000000
+```
+5.5. **Baltic states population**<br>
+What is the total population of ('Estonia', 'Latvia', 'Lithuania') 
+&nbsp;&nbsp;&nbsp;&nbsp;
+```sql
+SELECT
+  SUM(population) AS "total population"
+FROM
+  world
+WHERE
+  name IN ('Estonia', 'Latvia', 'Lithuania')
+```
+5.6. **Counting the countries of each continent**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+For each continent show the `continent` and `number of countries`
+```sql
+SELECT
+  continent, COUNT(name) AS "number of countries"
+FROM
+  world
+GROUP BY
+  continent
+```
+5.7. **Counting big countries in each continent**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+For each continent show the continent and number of countries with populations of at least 10 million.
+```sql
+SELECT
+  continent, COUNT(name) AS "number of countries"
+FROM
+  world
+WHERE
+  population > 10000000
+GROUP BY
+  continent
+```
+5.8. **Counting big continents**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+List the continents that have a total population of at least 100 million.
+```sql
+SELECT
+  continent
+FROM
+  world
+GROUP BY
+  continent
+HAVING
+  SUM(population) > 100000000
 ```
